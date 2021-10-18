@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@drawable/rock"
+        android:label="가위바위보"
+        android:roundIcon="@drawable/rock"
         android:supportsRtl="true"
         android:theme="@style/Theme.2019106050_midterm_test">
         <activity
