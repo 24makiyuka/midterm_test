@@ -3,6 +3,7 @@ package com.example.a2019106050_midterm_test;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.a2019106050_midterm_test.databinding.ActivityMainBinding;
 
@@ -23,9 +24,13 @@ public class MainActivity extends AppCompatActivity {
         binding.button1.setOnClickListener(v -> game("바위"));
         binding.button2.setOnClickListener(v -> game("가위"));
         binding.button3.setOnClickListener(v -> game("보"));
+
+        binding.button4.setOnClickListener(v -> restart());
     }
     private void game(String yourChoice) {
         int ai = random.nextInt(3);
+        binding.button4.setVisibility(View.VISIBLE);
+
         String aiChoice;
         switch (ai){
             case 0:
@@ -37,13 +42,12 @@ public class MainActivity extends AppCompatActivity {
             default:
                 aiChoice = "보";
         }
-        binding.textView.setText("AI가" + aiChoice +"를 냈습니다");
-        binding.textView2.setText("당신은" + yourChoice +"를 냈습니다");
+        binding.textView.setText("당신은 " + yourChoice +"를 AI는 " + aiChoice + "를 냈습니다");
 
         String result;
 
         if(aiChoice.equals(yourChoice)){
-            result = "비겼습니다..";
+            result = "비겼습니다..다시한번!";
         } else if ((aiChoice.equals("바위") && yourChoice.equals("보")) ||
                 (aiChoice.equals("가위") && yourChoice.equals("바위")) ||
                 (aiChoice.equals("보") && yourChoice.equals("가위"))) {
@@ -53,10 +57,15 @@ public class MainActivity extends AppCompatActivity {
             result = "미안합니다ㅜㅜ 당신이 졌습니다";
             aipoint++;
         }
-        binding.textView.setText(result);
+        binding.textView2.setText(result);
         binding.textView4.setText("AI:"+aipoint);
         binding.textView5.setText("YOU"+yourpoint);
 
+    }
+
+    private void restart(){
+        finish();
+        startActivity(getIntent());
     }
 
 
